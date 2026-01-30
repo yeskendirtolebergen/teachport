@@ -11,8 +11,23 @@ async function bootstrap() {
         transform: true,
     }));
     app.enableCors();
-    await app.listen(process.env.PORT ?? 3001);
-    console.log(`Backend running on: ${await app.getUrl()}`);
+    if (process.env.NODE_ENV === 'development') {
+        await app.listen(process.env.PORT ?? 3001);
+        console.log(`Backend running local on port 3001`);
+    }
+    else {
+        await app.init();
+        return app.getHttpAdapter().getInstance();
+    }
 }
-bootstrap();
+if (process.env.NODE_ENV === 'development') {
+    bootstrap();
+}
+let handler;
+exports.default = async (req, res) => {
+    if (!handler) {
+        handler = await bootstrap();
+    }
+    return handler(req, res);
+};
 //# sourceMappingURL=main.js.map
