@@ -19,6 +19,7 @@ async function bootstrap() {
     console.log(`Backend running local on port 3001`);
   } else {
     await app.init();
+    console.log('NestJS initialized for Vercel');
     return app.getHttpAdapter().getInstance();
   }
 }
