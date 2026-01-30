@@ -1,0 +1,30 @@
+export declare class GoogleFormRegisterDto {
+    fullName: string;
+    iin: string;
+    email: string;
+    phone?: string;
+    birthDate?: string;
+    graduatedSchool?: string;
+    totalExperience?: number;
+    currentWorkplace?: string;
+    experienceInCurrent?: number;
+    subject?: string;
+    category?: string;
+    categoryExpiration?: string;
+    isHomeroomTeacher?: boolean | string;
+    homeroomClass?: string;
+    academicBackground?: string;
+    tat2024?: string;
+    tat2025?: string;
+    tat2026?: string;
+    ielts?: string;
+    toefl?: string;
+    tesol?: string;
+    celta?: string;
+    ib?: string;
+    ap?: string;
+    btsResults?: string;
+    kboResults?: string;
+    regionalResults?: string;
+    labResults?: string;
+}

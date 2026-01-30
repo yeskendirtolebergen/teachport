@@ -1,0 +1,76 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main {
+    flex: 1;
+    margin-left: 250px;
+    padding: 3rem;
+}
+
+.header {
+    margin-bottom: 2.5rem;
+}
+
+.subtitle {
+    color: var(--text-muted);
+}
+
+.card {
+    padding: 0;
+    border-radius: 1.25rem;
+    overflow: hidden;
+}
+
+.cardHeader {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardHeader h3 {
+    margin: 0;
+}
+
+.count {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    background: #f1f5f9;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    text-align: left;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.02);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.table td {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.nameCell {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+}

@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  TEACHER
+  ADMIN
+}
+
+enum AchievementStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  iin          String   @unique // National ID
+  passwordHash String
+  role         Role     @default(TEACHER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  teacher      Teacher?
+}
+
+model Teacher {
+  id                    Int               @id @default(autoincrement())
+  userId                Int               @unique
+  user                  User              @relation(fields: [userId], references: [id])
+  firstName             String
+  lastName              String
+  email                 String            @unique
+  phone                 String?
+  dateOfBirth           DateTime?
+  graduatedSchool       String?
+  totalExperience       Int               @default(0)
+  currentWorkplace      String?
+  experienceInCurrent   Int               @default(0)
+  subject               String?
+  category              String?
+  categoryExpiration    DateTime?
+  isHomeroomTeacher     Boolean           @default(false)
+  homeroomClass         String?
+  degree                String? // Master's, Doctorate, etc.
+  photoUrl              String?
+  certifications        Certification[]
+  studentResults        StudentResult[]
+  skills                TeacherSkill[]
+  yearlyGoals           YearlyGoal[]
+}
+
+model Certification {
+  id          Int               @id @default(autoincrement())
+  teacherId   Int
+  teacher     Teacher           @relation(fields: [teacherId], references: [id])
+  type        String // TAT, IELTS, TOEFL, TESOL, CELTA, IB, AP
+  year        Int?
+  value       String // Score/Result
+  status      AchievementStatus @default(PENDING)
+  evidenceUrl String?
+}
+
+model StudentResult {
+  id          Int               @id @default(autoincrement())
+  teacherId   Int
+  teacher     Teacher           @relation(fields: [teacherId], references: [id])
+  type        String // BTS, KBO, Olympiad, Lab
+  description String?
+  value       String
+  status      AchievementStatus @default(PENDING)
+}
+
+model Skill {
+  id          Int            @id @default(autoincrement())
+  name        String         @unique
+  description String?
+  teachers    TeacherSkill[]
+}
+
+model TeacherSkill {
+  id        Int               @id @default(autoincrement())
+  teacherId Int
+  teacher   Teacher           @relation(fields: [teacherId], references: [id])
+  skillId   Int
+  skill     Skill             @relation(fields: [skillId], references: [id])
+  status    AchievementStatus @default(PENDING)
+}
+
+model YearlyGoal {
+  id          Int               @id @default(autoincrement())
+  teacherId   Int
+  teacher     Teacher           @relation(fields: [teacherId], references: [id])
+  title       String
+  description String?
+  deadline    DateTime?
+  status      AchievementStatus @default(PENDING)
+}
