@@ -21,12 +21,12 @@ let WebhookController = class WebhookController {
     constructor(webhookService) {
         this.webhookService = webhookService;
     }
-    async registerFromForm(data, secret) {
+    async registerFromForm(data, secret, testMode) {
         const expectedSecret = process.env.WEBHOOK_SECRET || 'super-secret-key';
         if (secret !== expectedSecret) {
             throw new common_1.UnauthorizedException('Invalid webhook secret');
         }
-        return this.webhookService.handleGoogleForm(data);
+        return this.webhookService.handleGoogleForm(data, testMode === 'true');
     }
 };
 exports.WebhookController = WebhookController;
@@ -34,8 +34,9 @@ __decorate([
     (0, common_1.Post)('google-form'),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Headers)('x-webhook-secret')),
+    __param(2, (0, common_1.Headers)('x-test-mode')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [google_form_register_dto_1.GoogleFormRegisterDto, String]),
+    __metadata("design:paramtypes", [google_form_register_dto_1.GoogleFormRegisterDto, String, String]),
     __metadata("design:returntype", Promise)
 ], WebhookController.prototype, "registerFromForm", null);
 exports.WebhookController = WebhookController = __decorate([

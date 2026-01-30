@@ -6,19 +6,19 @@ export declare class TeachersService {
         certifications: {
             id: number;
             year: number | null;
-            teacherId: number;
             type: string;
             value: string;
             status: import("@prisma/client").$Enums.AchievementStatus;
             evidenceUrl: string | null;
+            teacherId: number;
         }[];
         studentResults: {
             id: number;
-            teacherId: number;
             type: string;
             value: string;
             status: import("@prisma/client").$Enums.AchievementStatus;
             description: string | null;
+            teacherId: number;
         }[];
         skills: ({
             skill: {
@@ -28,15 +28,15 @@ export declare class TeachersService {
             };
         } & {
             id: number;
-            teacherId: number;
             status: import("@prisma/client").$Enums.AchievementStatus;
+            teacherId: number;
             skillId: number;
         })[];
         yearlyGoals: {
             id: number;
-            teacherId: number;
             status: import("@prisma/client").$Enums.AchievementStatus;
             description: string | null;
+            teacherId: number;
             title: string;
             deadline: Date | null;
         }[];

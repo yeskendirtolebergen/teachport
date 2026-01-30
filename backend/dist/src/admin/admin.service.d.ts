@@ -32,19 +32,19 @@ export declare class AdminService {
         certifications: {
             id: number;
             year: number | null;
-            teacherId: number;
             type: string;
             value: string;
             status: import("@prisma/client").$Enums.AchievementStatus;
             evidenceUrl: string | null;
+            teacherId: number;
         }[];
         studentResults: {
             id: number;
-            teacherId: number;
             type: string;
             value: string;
             status: import("@prisma/client").$Enums.AchievementStatus;
             description: string | null;
+            teacherId: number;
         }[];
         skills: ({
             skill: {
@@ -54,15 +54,15 @@ export declare class AdminService {
             };
         } & {
             id: number;
-            teacherId: number;
             status: import("@prisma/client").$Enums.AchievementStatus;
+            teacherId: number;
             skillId: number;
         })[];
         yearlyGoals: {
             id: number;
-            teacherId: number;
             status: import("@prisma/client").$Enums.AchievementStatus;
             description: string | null;
+            teacherId: number;
             title: string;
             deadline: Date | null;
         }[];
@@ -89,31 +89,31 @@ export declare class AdminService {
     approveCertification(id: number, status: AchievementStatus): Promise<{
         id: number;
         year: number | null;
-        teacherId: number;
         type: string;
         value: string;
         status: import("@prisma/client").$Enums.AchievementStatus;
         evidenceUrl: string | null;
+        teacherId: number;
     }>;
     approveStudentResult(id: number, status: AchievementStatus): Promise<{
         id: number;
-        teacherId: number;
         type: string;
         value: string;
         status: import("@prisma/client").$Enums.AchievementStatus;
         description: string | null;
+        teacherId: number;
     }>;
     approveSkill(id: number, status: AchievementStatus): Promise<{
         id: number;
-        teacherId: number;
         status: import("@prisma/client").$Enums.AchievementStatus;
+        teacherId: number;
         skillId: number;
     }>;
     approveGoal(id: number, status: AchievementStatus): Promise<{
         id: number;
-        teacherId: number;
         status: import("@prisma/client").$Enums.AchievementStatus;
         description: string | null;
+        teacherId: number;
         title: string;
         deadline: Date | null;
     }>;

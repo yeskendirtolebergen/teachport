@@ -46,8 +46,9 @@ export default function LoginPage() {
 
                 <form onSubmit={handleLogin}>
                     <div className={styles.formGroup}>
-                        <label className={styles.label}>IIN (National ID)</label>
+                        <label className={styles.label} htmlFor="iin-input">IIN (National ID)</label>
                         <input
+                            id="iin-input"
                             type="text"
                             className={styles.input}
                             placeholder="Enter your 12-digit IIN"
@@ -58,8 +59,9 @@ export default function LoginPage() {
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label className={styles.label}>Password</label>
+                        <label className={styles.label} htmlFor="password-input">Password</label>
                         <input
+                            id="password-input"
                             type="password"
                             className={styles.input}
                             placeholder="••••••••"

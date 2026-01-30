@@ -10,6 +10,7 @@ export class WebhookController {
     async registerFromForm(
         @Body() data: GoogleFormRegisterDto,
         @Headers('x-webhook-secret') secret: string,
+        @Headers('x-test-mode') testMode: string,
     ) {
         const expectedSecret = process.env.WEBHOOK_SECRET || 'super-secret-key';
 
@@ -17,6 +18,6 @@ export class WebhookController {
             throw new UnauthorizedException('Invalid webhook secret');
         }
 
-        return this.webhookService.handleGoogleForm(data);
+        return this.webhookService.handleGoogleForm(data, testMode === 'true');
     }
 }

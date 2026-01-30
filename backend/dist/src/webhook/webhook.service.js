@@ -55,7 +55,7 @@ let WebhookService = class WebhookService {
         this.prisma = prisma;
         this.mailService = mailService;
     }
-    async handleGoogleForm(data) {
+    async handleGoogleForm(data, isTest = false) {
         const existingUser = await this.prisma.user.findUnique({
             where: { iin: data.iin },
         });
@@ -132,6 +132,7 @@ let WebhookService = class WebhookService {
         return {
             message: 'Teacher account created successfully',
             iin: user.iin,
+            ...(isTest ? { tempPassword } : {}),
         };
     }
 };

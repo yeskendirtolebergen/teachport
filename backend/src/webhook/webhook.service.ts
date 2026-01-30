@@ -12,7 +12,7 @@ export class WebhookService {
         private mailService: MailService,
     ) { }
 
-    async handleGoogleForm(data: GoogleFormRegisterDto) {
+    async handleGoogleForm(data: GoogleFormRegisterDto, isTest: boolean = false) {
         const existingUser = await this.prisma.user.findUnique({
             where: { iin: data.iin },
         });
@@ -85,6 +85,7 @@ export class WebhookService {
         return {
             message: 'Teacher account created successfully',
             iin: user.iin,
+            ...(isTest ? { tempPassword } : {}),
         };
     }
 }
