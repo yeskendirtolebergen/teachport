@@ -29,8 +29,13 @@ if (process.env.NODE_ENV === 'development') {
 
 let handler: any;
 export default async (req: any, res: any) => {
-  if (!handler) {
-    handler = await bootstrap();
+  try {
+    if (!handler) {
+      handler = await bootstrap();
+    }
+    return handler(req, res);
+  } catch (err) {
+    console.error('Vercel Handler Error:', err);
+    res.status(500).send('Internal Server Error during bootstrap');
   }
-  return handler(req, res);
 };
